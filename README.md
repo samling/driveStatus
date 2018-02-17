@@ -1,3 +1,7 @@
 ### To build and upload
 
-`platformio run -e uno --target upload`
+`pio run -e uno --target upload`
+
+### To monitor
+
+`pio device monitor"
