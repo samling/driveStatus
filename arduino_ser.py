@@ -1,10 +1,11 @@
 import serial
 import socket
 import subprocess
+import time
 
 ser = serial.Serial(
     port='/dev/ttyACM0',
-    baudrate=9600,
+    baudrate=115200,
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,
@@ -34,7 +35,15 @@ def get_ip():
 
 ip = get_ip()
 
-ser.write(device1 + ":" + mountpoint1 + ":" + size1 + ":" + used1 + ":" + available1 + ":" + percent1 + "&")
-ser.write(device2 + ":" + mountpoint2 + ":" + size2 + ":" + used2 + ":" + available2 + ":" + percent2 + "&")
-ser.write(device3 + ":" + mountpoint3 + ":" + size3 + ":" + used3 + ":" + available3 + ":" + percent3 + "&")
-ser.write(ip+"&")
+if ser.isOpen():
+	ser.flush()
+	ser.write(device1 + ":" + mountpoint1 + ":" + size1 + ":" + used1 + ":" + available1 + ":" + percent1 + "&")
+	time.sleep(1)
+	ser.write(device2 + ":" + mountpoint2 + ":" + size2 + ":" + used2 + ":" + available2 + ":" + percent2 + "&")
+	time.sleep(1)
+	ser.write(device3 + ":" + mountpoint3 + ":" + size3 + ":" + used3 + ":" + available3 + ":" + percent3 + "&")
+	print(ip)
+	ser.write(ip+"&")
+	ser.close()
+
+ser.close()
