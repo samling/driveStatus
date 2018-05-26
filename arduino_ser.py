@@ -37,13 +37,8 @@ ip = get_ip()
 
 if ser.isOpen():
 	ser.flush()
-	ser.write(device1 + ":" + mountpoint1 + ":" + size1 + ":" + used1 + ":" + available1 + ":" + percent1 + "&")
-	time.sleep(1)
-	ser.write(device2 + ":" + mountpoint2 + ":" + size2 + ":" + used2 + ":" + available2 + ":" + percent2 + "&")
-	time.sleep(1)
-	ser.write(device3 + ":" + mountpoint3 + ":" + size3 + ":" + used3 + ":" + available3 + ":" + percent3 + "&")
-	print(ip)
-	ser.write(ip+"&")
+        time.sleep(3)
+	ser.write(device1 + ":" + mountpoint1 + ":" + size1 + ":" + used1 + ":" + available1 + ":" + percent1 + "&" + device2 + ":" + mountpoint2 + ":" + size2 + ":" + used2 + ":" + available2 + ":" + percent2 + "&" + device3 + ":" + mountpoint3 + ":" + size3 + ":" + used3 + ":" + available3 + ":" + percent3 + "&")
 	ser.close()
 
 ser.close()
